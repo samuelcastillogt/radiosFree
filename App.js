@@ -1,9 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator, FlatList } from 'react-native';
 import { dataService } from './services/data.service';
 import RadioCard from './components/RadioCard';
 import Player from './components/Player';
+import { contants } from './constans';
+import Banner from './components/Banner';
 
 export default function App() {
 const [radios, setRadios] = useState()
@@ -22,16 +24,24 @@ const [radio, setRadio] = useState()
   },[])
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working</Text>
-      {
-        radios == undefined && <ActivityIndicator />
+      <Banner />
+      { radio == undefined ?
+        <>
+        {
+        radios == undefined && <ActivityIndicator size="large"/>
       }
       {
-        radios != undefined && radios.map(item => <RadioCard radio={item} key={item.id} setRadio={setRadio}/>)
+        radios != undefined && <FlatList 
+                                  horizontal
+                                  data={radios}
+                                  renderItem={(item) => <RadioCard radio={item.item} setRadio={setRadio}/>}
+                                  keyExtractor={(item) => item.id}
+                                />
       }
-      {
-        radio != undefined && <Player radio={radios} setRadio={setRadio}/>
+        </> : <Player radio={radio} setRadio={setRadio}/>
+       
       }
+      
     </View>
   );
 }
@@ -39,8 +49,9 @@ const [radio, setRadio] = useState()
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: contants.bodyBackground,
     alignItems: 'center',
     justifyContent: 'center',
   },
+
 });
