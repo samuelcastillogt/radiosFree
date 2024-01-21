@@ -4,10 +4,10 @@
     "slug": "radiosFree",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icono.jpg",
+    "icon": "./assets/icono.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/icono.jpg",
+      "image": "./assets/icono.png",
       "resizeMode": "contain",
       "backgroundColor": "#051e34"
     },
@@ -19,10 +19,11 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/icono.jpg",
+        "foregroundImage": "./assets/icono.png",
         "backgroundColor": "#051e34"
       },
-      "package": "com.samuelcastillo.radiosFree"
+      "package": "com.samuelcastillo.radiosFree",
+      "versionCode": 8
     },
     "web": {
       "favicon": "./assets/favicon.png"

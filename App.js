@@ -24,9 +24,10 @@ const [radio, setRadio] = useState()
   },[])
   return (
     <View style={styles.container}>
-      <Banner />
+      
       { radio == undefined ?
         <>
+        <Banner />
         {
         radios == undefined && <ActivityIndicator size="large"/>
       }
@@ -52,6 +53,7 @@ const styles = StyleSheet.create({
     backgroundColor: contants.bodyBackground,
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 20
   },
 
 });

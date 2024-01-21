@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
         height: 200,
         width: "90%",
         margin: 20,
-        borderRadius: 10
+        borderRadius: 10,
+        elevation: 20
     },
     image: {
         flex: 1,

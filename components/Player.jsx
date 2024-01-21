@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { View, StyleSheet, Button, Text, ActivityIndicator } from 'react-native';
+import { View, StyleSheet, Image, Text, ActivityIndicator } from 'react-native';
 import { Audio } from 'expo-av';
 import { AntDesign, FontAwesome } from '@expo/vector-icons';
 import { contants } from '../constans';
 export default function Player(props) {
   const {radio, setRadio} = props
-  const {url, nombre} = radio.data
+  const {url, nombre, imagen} = radio.data
   const [sound, setSound] = useState();
   const [loading, setLoading] = useState(false)
   async function playSound() {
@@ -14,7 +14,6 @@ export default function Player(props) {
     try{
       await Audio.setAudioModeAsync({
         staysActiveInBackground: true,
-        playThroughEarpieceAndroid: true
       });
     const { sound } = await Audio.Sound.createAsync({uri: url});
     setSound(sound);
@@ -38,16 +37,23 @@ export default function Player(props) {
   }, [sound]);
   return (
     <View style={styles.container}>
+      <AntDesign name="closecircle" size={24} color={contants.color} style={styles.closeIcon} onPress={stopSound}/>
+      <Image 
+        source={{
+          uri: imagen
+        }}
+        style={styles.img}
+      />
       <Text style={styles.title}>{nombre}</Text>
       <View style={styles.control}>
          {
-        sound == undefined && loading == false && <AntDesign name="play" size={30} color={contants.color} onPress={playSound}/>
+        sound == undefined && loading == false && <AntDesign name="play" size={100} color={contants.color} onPress={playSound}/>
       }
        {
         loading == true && <ActivityIndicator size="large"/>
        } 
        {
-        sound != undefined && <FontAwesome name="stop" size={24} color={contants.color} onPress={stopSound}/>
+        sound != undefined && loading == false && <FontAwesome name="stop" size={100} color={contants.color} onPress={stopSound}/>
        }
       </View>
      
@@ -57,10 +63,13 @@ export default function Player(props) {
 }
 const styles = StyleSheet.create({
   container:{
-    flex: 1,
+    backgroundColor: contants.cardBackground,
+    margin: 10,
     justifyContent: "center",
-    width: "100%",
-    padding: 20
+    alignItems: "center",
+    padding: 30,
+    borderRadius: 20,
+    elevation: 20,
   },
   title: {
     fontSize: 30,
@@ -71,6 +80,21 @@ const styles = StyleSheet.create({
   control:{
     alignContent: "center",
     justifyContent: "center",
-    textAlign: "center"
+    textAlign: "center",
+    margin: 20
+  },
+  img:{
+    width: 200,
+    height: 200,
+    shadowColor: "black",
+    shadowOffset: 20
+  },
+  closeIcon:{
+    position: "absolute",
+    top: 0,
+    margin: 10,
+    left: 5,
+    zIndex: 999
   }
+
 })

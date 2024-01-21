@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight, Image } from 'react-native';
 import { contants } from '../constans';
 export default function RadioCard(props) {
     const [shadowOffsetWidth, setShadowOffsetWidth] = useState(0);
@@ -8,7 +8,6 @@ export default function RadioCard(props) {
     const [shadowRadius, setShadowRadius] = useState(5);
     const [shadowOpacity, setShadowOpacity] = useState(1);
     const {radio, setRadio} = props
-    console.log(props.radio)
     return (
         <TouchableHighlight onPress={()=> setRadio(radio)} style={styles.container}>
            <View style={styles.container}>
@@ -23,6 +22,12 @@ export default function RadioCard(props) {
             shadowRadius,
           },
         ]}>
+          <Image 
+            source={{
+              uri: radio.data.imagen
+            }}
+            style={styles.img}
+          />
                <Text style={styles.title}>{radio.data.nombre}</Text> 
             </View>
             
@@ -41,6 +46,7 @@ const styles = StyleSheet.create({
     margin: 10,
     alignItems: 'center',
     justifyContent: 'center',
+    elevation: 10
   },
   square: {
     alignSelf: 'center',
@@ -48,5 +54,10 @@ const styles = StyleSheet.create({
   },
   title:{
     color: contants.color
+  },
+  img:{
+    width: 100,
+    height: 100,
+    overflow: "hidden"
   }
 });
