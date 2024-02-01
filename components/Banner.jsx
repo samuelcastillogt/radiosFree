@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import { View, Text, Image, StyleSheet, ImageBackground } from "react-native";
 import img from "../assets/banner.jpeg"
 import { contants } from "../constans";
 const Banner = ()=>{
+    const [count, setCount]=useState(0)
+
     return(
         <View style={styles.container}>
             <ImageBackground source={img} resizeMode="cover" style={styles.image}/>
@@ -12,7 +14,7 @@ const Banner = ()=>{
 }
 const styles = StyleSheet.create({
     container: {
-        height: 200,
+        height: 150,
         width: "90%",
         margin: 20,
         borderRadius: 10,

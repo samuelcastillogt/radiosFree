@@ -9,9 +9,9 @@ export default function RadioCard(props) {
     const [shadowOpacity, setShadowOpacity] = useState(1);
     const {radio, setRadio} = props
     return (
-        <TouchableHighlight onPress={()=> setRadio(radio)} style={styles.container}>
+        <TouchableHighlight onPress={()=> setRadio(radio)} >
            <View style={styles.container}>
-            <View style={[
+            {/* <View style={[
           styles.square,
           {
             shadowOffset: {
@@ -21,15 +21,18 @@ export default function RadioCard(props) {
             shadowOpacity,
             shadowRadius,
           },
-        ]}>
+        ]}> */}
           <Image 
             source={{
               uri: radio.data.imagen
             }}
             style={styles.img}
           />
-               <Text style={styles.title}>{radio.data.nombre}</Text> 
-            </View>
+          <View style={styles.titleCard}>
+            <Text style={styles.title}>{radio.data.nombre}</Text> 
+          </View>
+          
+            {/* </View> */}
             
         </View> 
         </TouchableHighlight>
@@ -39,25 +42,31 @@ export default function RadioCard(props) {
 
 const styles = StyleSheet.create({
   container: {
-    width: 200,
-    height: 150,
+    width: "95%",
+    height: 100,
     backgroundColor: contants.cardBackground,
     borderRadius: 10,
     margin: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    elevation: 10
+    elevation: 30,
+    display:"flex",
+    flexDirection: "row"
   },
   square: {
     alignSelf: 'center',
     shadowColor: 'black',
   },
   title:{
-    color: contants.color
+    color: contants.color,
+    fontWeight: "bold"
   },
   img:{
-    width: 100,
-    height: 100,
+    width: 75,
+    height: 75,
     overflow: "hidden"
+  },
+  titleCard:{
+    padding: 10
   }
 });

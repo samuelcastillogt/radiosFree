@@ -20,7 +20,7 @@ export default function Player(props) {
     console.log('Playing Sound');
     await sound.playAsync();
     setLoading(false)      
-    }catch(err){console.log(err)}
+    }catch(err){alert("Ha ocurrido un error :( Ya estamos trabajando para solucionarlo")}
 
   }
   const stopSound = ()=>{
