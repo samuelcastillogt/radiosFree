@@ -9,6 +9,7 @@ export default function RadioCard(props) {
     const [shadowOpacity, setShadowOpacity] = useState(1);
     const {radio, setRadio} = props
     return (
+      
         <TouchableHighlight onPress={()=> setRadio(radio)} >
            <View style={styles.container}>
             {/* <View style={[
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
   container: {
     width: "95%",
     height: 100,
-    backgroundColor: contants.cardBackground,
+    backgroundColor: "#3ff1dd",
     borderRadius: 10,
     margin: 10,
     alignItems: 'center',
@@ -58,13 +59,15 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
   },
   title:{
-    color: contants.color,
-    fontWeight: "bold"
+    color: contants.backgroundColor,
+    fontWeight: "bold",
+    fontSize: 20
   },
   img:{
     width: 75,
     height: 75,
-    overflow: "hidden"
+    overflow: "hidden",
+    borderRadius: 100
   },
   titleCard:{
     padding: 10
