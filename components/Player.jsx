@@ -37,7 +37,7 @@ export default function Player(props) {
   }, [sound]);
   return (
     <View style={styles.container}>
-      <AntDesign name="closecircle" size={24} color={contants.color} style={styles.closeIcon} onPress={stopSound}/>
+      <AntDesign name="closecircle" size={30} color={"#5ea935"} style={styles.closeIcon} onPress={stopSound}/>
       <Image 
         source={{
           uri: imagen
@@ -47,7 +47,7 @@ export default function Player(props) {
       <Text style={styles.title}>{nombre}</Text>
       <View style={styles.control}>
          {
-        sound == undefined && loading == false && <AntDesign name="play" size={100} color={contants.color} onPress={playSound}/>
+        sound == undefined && loading == false && <AntDesign name="play" size={100} color={"#3ff1dd"} onPress={playSound}/>
       }
        {
         loading == true && <ActivityIndicator size="large"/>
@@ -63,7 +63,9 @@ export default function Player(props) {
 }
 const styles = StyleSheet.create({
   container:{
-    backgroundColor: contants.cardBackground,
+    flex:1,
+    width: "99%",
+    backgroundColor: "#001b46",
     margin: 10,
     justifyContent: "center",
     alignItems: "center",
@@ -75,7 +77,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     textAlign: "center",
-    color: contants.color
+    color: "#3ff1dd"
   },
   control:{
     alignContent: "center",
@@ -84,16 +86,18 @@ const styles = StyleSheet.create({
     margin: 20
   },
   img:{
-    width: 200,
+    width: "120%",
     height: 200,
-    shadowColor: "black",
-    shadowOffset: 20
+    position: "absolute",
+    top: 0,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20
   },
   closeIcon:{
     position: "absolute",
-    top: 0,
+    top: -20,
     margin: 10,
-    left: 5,
+    left: -20,
     zIndex: 999
   }
 

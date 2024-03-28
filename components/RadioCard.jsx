@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
   },
   title:{
-    color: contants.backgroundColor,
+    color: contants.bodyBackground,
     fontWeight: "bold",
     fontSize: 20
   },

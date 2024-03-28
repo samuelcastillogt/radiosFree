@@ -7,23 +7,25 @@ const Banner = ()=>{
 
     return(
         <View style={styles.container}>
-            <ImageBackground source={img} resizeMode="cover" style={styles.image}/>
-            <Text style={styles.title}>Radios 100% Gratis</Text>
+            {/* <ImageBackground source={img} resizeMode="cover" style={styles.image}/> */}
+            <Image source={{uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx-j1Cgcrda53_yhj2je8azkYyxV_GzjOL-JdgHMNcfImso-617Ft6imJ6ByK7VQpskdI&usqp=CAU"}} style={styles.image}/>
+            {/* <Text style={styles.title}>Radios 100% Gratis</Text> */}
         </View>
     )
 }
 const styles = StyleSheet.create({
     container: {
         height: 150,
-        width: "90%",
-        margin: 20,
-        borderRadius: 10,
-        elevation: 20
+        width: "110%",
+        marginBottom: 20,
+        elevation: 20,
+        backgroundColor: "red",
+        borderBottomRightRadius: 20
     },
     image: {
-        flex: 1,
-        justifyContent: 'center',
-        borderRadius: 10
+        width: "100%",
+        height: 150,
+        borderBottomRightRadius: 20
       },
     title:{
         color: contants.color,

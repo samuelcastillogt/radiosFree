@@ -1,6 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
+
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, ActivityIndicator, FlatList } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator, FlatList, StatusBar } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import { dataService } from './services/data.service';
 import RadioCard from './components/RadioCard';
@@ -41,6 +41,8 @@ useEffect(()=>{
       { radio == undefined ?
         <>
         <Banner />
+        <View style={styles.filtro}>
+          <Text style={styles.title}>Filtra por categoria</Text>
         <RNPickerSelect
             style={pickerSelectStyles}
             onValueChange={(value) => setFiltro(value)}
@@ -50,7 +52,9 @@ useEffect(()=>{
                 { label: 'Varios', value: 'varios' },
                 { label: 'Recuerdo', value: 'recuerdo' },
             ]}
-        />
+        />          
+        </View>
+
         {
         radios == undefined && <ActivityIndicator size="large"/>
       }
@@ -63,6 +67,7 @@ useEffect(()=>{
                                 data={filtrada}
                                 renderItem={(item) => <RadioCard radio={item.item} setRadio={setRadio}/>}
                                 keyExtractor={(item) => item.id}
+                                style={{marginTop: 10}}
                               />
 
       }
@@ -80,10 +85,17 @@ const styles = StyleSheet.create({
     backgroundColor: contants.bodyBackground,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20
+    padding: 20,
   },
   filtro:{
-    backgroundColor: "white"
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  title:{
+    color: contants.color,
+    fontWeight: "bold",
+    fontSize: 25
   }
 });
 const pickerSelectStyles = StyleSheet.create({
@@ -94,8 +106,9 @@ const pickerSelectStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 4,
-    color: 'black',
-    paddingRight: 30, // to ensure the text is never behind the icon
+    color: 'white',
+    paddingRight: 30,
+    margin: 20 // to ensure the text is never behind the icon
   },
   inputAndroid: {
     fontSize: 16,
@@ -106,6 +119,7 @@ const pickerSelectStyles = StyleSheet.create({
     borderRadius: 15,
     color: 'white',
     backgroundColor: contants.color,
-    paddingRight: 30, // to ensure the text is never behind the icon
+    paddingRight: 30,
+    margin: 20 // to ensure the text is never behind the icon
   },
 });
