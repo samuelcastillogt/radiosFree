@@ -37,7 +37,6 @@ export default function Player(props) {
   }, [sound]);
   return (
     <View style={styles.container}>
-      <AntDesign name="closecircle" size={30} color={"#5ea935"} style={styles.closeIcon} onPress={stopSound}/>
       <Image 
         source={{
           uri: imagen

@@ -1,81 +1,25 @@
 
-import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, ActivityIndicator, FlatList, StatusBar } from 'react-native';
-import RNPickerSelect from 'react-native-picker-select';
-import { dataService } from './services/data.service';
-import RadioCard from './components/RadioCard';
-import Player from './components/Player';
+import { StyleSheet} from 'react-native';
 import { contants } from './constans';
-import Banner from './components/Banner';
-
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Home from './pages/Home';
+import Radios from './pages/Radios';
+import { store } from './redux/store'
+import { Provider } from 'react-redux'
+import Radio from './pages/Radio';
+const Stack = createNativeStackNavigator()
 export default function App() {
-const [radios, setRadios] = useState()
-const [radio, setRadio] = useState()
-const [filtro, setFiltro] = useState("all")
-const [filtrada, setFiltrada] = useState([])
-  const getData = async()=>{
-  const response = await dataService.getAllData()
-  if(response.data){
-    setRadios(response.data)
-  }
-}
-useEffect(()=>{
-  if(filtro != "all"){
-    const data = radios.filter(item => item.data.categoria == filtro)
-    setFiltrada(data)
-  }else{
-    setFiltrada([])
-  }
-  
-  
-},[filtro])
-  useEffect(()=>{
-    if(radios == undefined){
-      getData()
-    }
-    
-  },[])
   return (
-    <View style={styles.container}>
-      
-      { radio == undefined ?
-        <>
-        <Banner />
-        <View style={styles.filtro}>
-          <Text style={styles.title}>Filtra por categoria</Text>
-        <RNPickerSelect
-            style={pickerSelectStyles}
-            onValueChange={(value) => setFiltro(value)}
-            items={[
-                { label: 'Todas', value: 'all' },
-                { label: 'Rock', value: 'rock' },
-                { label: 'Varios', value: 'varios' },
-                { label: 'Recuerdo', value: 'recuerdo' },
-            ]}
-        />          
-        </View>
-
-        {
-        radios == undefined && <ActivityIndicator size="large"/>
-      }
-      {
-        radios != undefined && filtro == "all" && <FlatList 
-                                  data={radios}
-                                  renderItem={(item) => <RadioCard radio={item.item} setRadio={setRadio}/>}
-                                  keyExtractor={(item) => item.id}
-                                />|| <FlatList 
-                                data={filtrada}
-                                renderItem={(item) => <RadioCard radio={item.item} setRadio={setRadio}/>}
-                                keyExtractor={(item) => item.id}
-                                style={{marginTop: 10}}
-                              />
-
-      }
-        </> : <Player radio={radio} setRadio={setRadio}/>
-       
-      }
-      
-    </View>
+    <Provider store={store}>
+    <NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={Home} options={{headerShown: false}}/>
+      <Stack.Screen name="Radios" component={Radios} />
+      <Stack.Screen name="Radio" component={Radio} />
+    </Stack.Navigator>
+    </NavigationContainer>
+    </Provider>
   );
 }
 
