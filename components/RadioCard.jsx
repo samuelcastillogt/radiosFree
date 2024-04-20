@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   container: {
     width: "95%",
     height: 100,
-    backgroundColor: "#3ff1dd",
+    backgroundColor: "#2c3d61",
     borderRadius: 10,
     margin: 10,
     alignItems: 'center',
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     shadowColor: 'black',
   },
   title:{
-    color: contants.bodyBackground,
+    color: "white",
     fontWeight: "bold",
     fontSize: 20
   },

@@ -17,6 +17,6 @@ const styles = StyleSheet.create({
     container:{
         flex: 1,
         backgroundColor: contants.bodyBackground,
-        padding: 20
+        // padding: 20
     }
 })

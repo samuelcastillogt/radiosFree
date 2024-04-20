@@ -15,8 +15,18 @@ export default function App() {
     <NavigationContainer>
     <Stack.Navigator>
       <Stack.Screen name="Home" component={Home} options={{headerShown: false}}/>
-      <Stack.Screen name="Radios" component={Radios} />
-      <Stack.Screen name="Radio" component={Radio} />
+      <Stack.Screen name="Radios" component={Radios} options={({ route }) => ({ title: route.params.filtro ? route.params.filtro.toUpperCase(): "TODAS" , headerStyle: {
+            backgroundColor: '#3c5384',
+          },          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          }, })}/>
+      <Stack.Screen name="Radio" component={Radio} options={({ route }) => ({ title: route.params.radio.data.nombre.toUpperCase(), headerStyle: {
+            backgroundColor: '#3c5384',
+          },          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          }, })}/>
     </Stack.Navigator>
     </NavigationContainer>
     </Provider>

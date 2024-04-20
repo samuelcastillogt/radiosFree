@@ -35,6 +35,9 @@ export default function Player(props) {
         }
       : undefined;
   }, [sound]);
+  useEffect(()=>{
+    playSound()
+  }, [])
   return (
     <View style={styles.container}>
       <Image 
@@ -43,18 +46,21 @@ export default function Player(props) {
         }}
         style={styles.img}
       />
-      <Text style={styles.title}>{nombre}</Text>
+      <View style={styles.secondContainer}>
+       <Text style={styles.title}>{nombre}</Text>
       <View style={styles.control}>
          {
-        sound == undefined && loading == false && <AntDesign name="play" size={100} color={"#3ff1dd"} onPress={playSound}/>
+        sound == undefined && loading == false && <AntDesign name="play" size={100} color={"white"} onPress={playSound}/>
       }
        {
         loading == true && <ActivityIndicator size="large"/>
        } 
        {
-        sound != undefined && loading == false && <FontAwesome name="stop" size={100} color={contants.color} onPress={stopSound}/>
+        sound != undefined && loading == false && <FontAwesome name="stop" size={100} color="white" onPress={stopSound}/>
        }
+      </View>       
       </View>
+
      
         
     </View>
@@ -63,8 +69,8 @@ export default function Player(props) {
 const styles = StyleSheet.create({
   container:{
     flex:1,
-    width: "99%",
-    backgroundColor: "#001b46",
+    // width: "99%",
+    backgroundColor: "#2c3d61",
     margin: 10,
     justifyContent: "center",
     alignItems: "center",
@@ -76,7 +82,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: "bold",
     textAlign: "center",
-    color: "#3ff1dd"
+    color: "white"
   },
   control:{
     alignContent: "center",
@@ -98,6 +104,11 @@ const styles = StyleSheet.create({
     margin: 10,
     left: -20,
     zIndex: 999
+  },
+  secondContainer:{
+    flex: 1,
+    justifyContent: "center",
+
   }
 
 })
