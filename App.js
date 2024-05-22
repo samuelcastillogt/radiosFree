@@ -1,17 +1,23 @@
 
+
 import { StyleSheet} from 'react-native';
 import { contants } from './constans';
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { PaperProvider } from 'react-native-paper';
+
 import Home from './pages/Home';
 import Radios from './pages/Radios';
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
 import Radio from './pages/Radio';
+
 const Stack = createNativeStackNavigator()
 export default function App() {
+
   return (
     <Provider store={store}>
+      <PaperProvider>
     <NavigationContainer>
     <Stack.Navigator>
       <Stack.Screen name="Home" component={Home} options={{headerShown: false}}/>
@@ -29,6 +35,7 @@ export default function App() {
           }, })}/>
     </Stack.Navigator>
     </NavigationContainer>
+    </PaperProvider>
     </Provider>
   );
 }

@@ -1,10 +1,13 @@
 import { StyleSheet, Text, View, StatusBar, ImageBackground, TouchableHighlight } from 'react-native'
 import React, {useEffect} from 'react'
 import {  useDispatch, useSelector } from 'react-redux'
-import Banner from '../components/Banner'
+import { TextInput } from 'react-native-paper';
+// import Banner from '../components/Banner'
 import { contants } from '../constans'
 import { dataService } from '../services/data.service'
 import { SET_RADIOS } from '../redux/slices/radios.slice'
+// import Admob from '../admob/Interestal'
+import Banner from '../admob/Baner'
 const categorias = ["Todas",
                 "Rock",
                 "Varios", 
@@ -27,6 +30,10 @@ const Home = ({navigation}) => {
   return (
     <View style={styles.container}>
         {/* <Banner /> */}
+        <TextInput
+      label="Email"
+
+    />
         <View style={styles.categorieContainer}>
         <TouchableHighlight onPress={()=> navigation.navigate("Radios", {filtro: undefined})} style={styles.image}>
        <ImageBackground source={{uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRTvTGHVhi_njsRy3XPtIRqlxRwwEgtkQgFkLP1KhpQnYK8afdxTRiAlK6QcxiS81FZ9U&usqp=CAU"}}
@@ -74,8 +81,9 @@ const Home = ({navigation}) => {
         </View>
 
         </View>
-       
-    </View>
+        <Banner />
+       {/* <Admob />     */}
+       </View>
   )
 }
 

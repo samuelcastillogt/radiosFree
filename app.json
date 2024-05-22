@@ -15,7 +15,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.samuelcastillo.radiosFree"
     },
     "android": {
       "adaptiveIcon": {
@@ -23,7 +24,7 @@
         "backgroundColor": "#051e34"
       },
       "package": "com.samuelcastillo.radiosFree",
-      "versionCode": 11
+      "versionCode": 12
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -32,6 +33,13 @@
       "eas": {
         "projectId": "33a2fbfa-d716-496d-92a4-f5d68eb16caf"
       }
-    }
+    },
+    "plugins": [
+      "expo-build-properties"
+    ]
+  },
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-5314398130823639~2712776637",
+    "ios_app_id": "ca-app-pub-5314398130823639~2712776637"
   }
 }
