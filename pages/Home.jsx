@@ -8,7 +8,7 @@ import { dataService } from '../services/data.service'
 import { SET_RADIOS } from '../redux/slices/radios.slice'
 import {useSQLiteContext} from "expo-sqlite/next"
 // import Admob from '../admob/Interestal'
-import Banner from '../admob/Baner'
+// import Banner from '../admob/Baner'
 const categorias = ["Todas",
                 "Rock",
                 "Varios", 
@@ -96,11 +96,20 @@ const Home = ({navigation}) => {
         <Text style={styles.name}>Catolicas</Text>
       </ImageBackground>
                  
+        </TouchableHighlight> 
+        <TouchableHighlight onPress={()=> navigation.navigate("Fav")} style={styles.secondaryImage}>
+       <ImageBackground source={{uri: "https://media.istockphoto.com/id/1194601056/es/foto/la-buena-m%C3%BAsica-encuentra-que-es-el-camino-a-tu-coraz%C3%B3n.jpg?s=612x612&w=0&k=20&c=hU2COFM1iELICAV7QQATbN_zw_Q9MWdZxyE9Nc-CqyU="}}
+                       resizeMode='cover'
+                        style={styles.secondaryImage}
+      >
+        <Text style={styles.name}>Favoritas</Text>
+      </ImageBackground>
+                 
         </TouchableHighlight>    
         </View>
 
         </View>
-        <Banner />
+        {/* <Banner /> */}
        {/* <Admob />     */}
        </View>
   )
@@ -117,7 +126,7 @@ const styles = StyleSheet.create({
         backgroundColor: contants.bodyBackground,
     },
     image: {
-        height: 200,
+        height: 150,
         width: 350,
         alignItems: "flex-end",
         justifyContent: "flex-end",

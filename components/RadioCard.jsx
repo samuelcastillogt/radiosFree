@@ -7,7 +7,6 @@ import { useSQLiteContext } from 'expo-sqlite/next';
 export default function RadioCard(props) {
     const [favorite, setFavorite] = useState(false);
     const db = useSQLiteContext();
-    console.log(props.radio.id)
     async function getAllfavorites() {
        try {
        const firstRow = await db.getAllAsync('SELECT * FROM favorite')

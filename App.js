@@ -13,6 +13,7 @@ import { store } from './redux/store'
 import { Provider } from 'react-redux'
 import Radio from './pages/Radio';
 import { useEffect } from 'react';
+import Fav from './pages/Fav';
 // import { setup } from './services/favorites.service';
 
 const Stack = createNativeStackNavigator()
@@ -31,6 +32,12 @@ export default function App() {
             fontWeight: 'bold',
           }, })}/>
       <Stack.Screen name="Radio" component={Radio} options={({ route }) => ({ title: route.params.radio.data.nombre.toUpperCase(), headerStyle: {
+            backgroundColor: '#3c5384',
+          },          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          }, })}/>
+                <Stack.Screen name="Fav" component={Fav} options={({ route }) => ({ title: "Favoritas", headerStyle: {
             backgroundColor: '#3c5384',
           },          headerTintColor: '#fff',
           headerTitleStyle: {
