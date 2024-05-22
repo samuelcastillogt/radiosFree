@@ -2,27 +2,44 @@
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, TouchableHighlight, Image } from 'react-native';
 import { contants } from '../constans';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import { useSQLiteContext } from 'expo-sqlite/next';
 export default function RadioCard(props) {
-    const [shadowOffsetWidth, setShadowOffsetWidth] = useState(0);
-    const [shadowOffsetHeight, setShadowOffsetHeight] = useState(0);
-    const [shadowRadius, setShadowRadius] = useState(5);
-    const [shadowOpacity, setShadowOpacity] = useState(1);
+    const [favorite, setFavorite] = useState(false);
+    const db = useSQLiteContext();
+    console.log(props.radio.id)
+    async function getAllfavorites() {
+       try {
+       const firstRow = await db.getAllAsync('SELECT * FROM favorite')
+       const result = firstRow.filter((item)=> item.idRadio == props.radio.id)
+       if(result.length > 0){
+        setFavorite(true)
+       }
+          
+       } catch (error) {
+           console.log(error)
+       }
+     }
+     const saveFavorite = async()=>{
+      await db.runAsync(`INSERT INTO favorite (idRadio) VALUES (?)`, props.radio.id)        
+      setFavorite(true)
+    }
+    const deleteFavorite = async()=>{
+      try {
+        await db.runAsync('DELETE FROM favorite WHERE idRadio = $value', props.radio.id)
+        setFavorite(false)   
+      } catch (error) {
+          console.log(error)
+      }          
+  }
+   useEffect(() => {
+     getAllfavorites();
+   }, []);
     const {radio, setRadio} = props
     return (
       
         <TouchableHighlight onPress={()=> setRadio(radio)} >
            <View style={styles.container}>
-            {/* <View style={[
-          styles.square,
-          {
-            shadowOffset: {
-              width: shadowOffsetWidth,
-              height: -shadowOffsetHeight,
-            },
-            shadowOpacity,
-            shadowRadius,
-          },
-        ]}> */}
           <Image 
             source={{
               uri: radio.data.imagen
@@ -32,6 +49,10 @@ export default function RadioCard(props) {
           <View style={styles.titleCard}>
             <Text style={styles.title}>{radio.data.nombre}</Text> 
           </View>
+          {
+            favorite ? <AntDesign name="star" size={30} color="white" onPress={deleteFavorite}/> : <AntDesign name="staro" size={30} color="white" onPress={saveFavorite}/>
+          }
+          
           
             {/* </View> */}
             

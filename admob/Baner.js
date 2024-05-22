@@ -27,7 +27,6 @@ function Banner() {
   return (
   <>
   <BannerAd key={key} unitId={adUnitId} size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} />
-  <Text>{adUnitId.BANNER}</Text>
   </>
   )
 }

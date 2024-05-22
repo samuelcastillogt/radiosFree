@@ -5,18 +5,21 @@ import { contants } from './constans';
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { PaperProvider } from 'react-native-paper';
+import { SQLiteProvider, useSQLiteContext } from 'expo-sqlite/next';
 
 import Home from './pages/Home';
 import Radios from './pages/Radios';
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
 import Radio from './pages/Radio';
+import { useEffect } from 'react';
+// import { setup } from './services/favorites.service';
 
 const Stack = createNativeStackNavigator()
 export default function App() {
-
   return (
     <Provider store={store}>
+      <SQLiteProvider databaseName="db.db" >
       <PaperProvider>
     <NavigationContainer>
     <Stack.Navigator>
@@ -36,6 +39,7 @@ export default function App() {
     </Stack.Navigator>
     </NavigationContainer>
     </PaperProvider>
+    </SQLiteProvider>
     </Provider>
   );
 }
