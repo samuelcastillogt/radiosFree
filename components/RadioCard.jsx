@@ -3,33 +3,33 @@ import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, TouchableHighlight, Image } from 'react-native';
 import { contants } from '../constans';
 import AntDesign from '@expo/vector-icons/AntDesign';
-import { useSQLiteContext } from 'expo-sqlite/next';
+// import { useSQLiteContext } from 'expo-sqlite/next';
 export default function RadioCard(props) {
     const [favorite, setFavorite] = useState(false);
-    const db = useSQLiteContext();
+    // const db = useSQLiteContext();
     async function getAllfavorites() {
-       try {
-       const firstRow = await db.getAllAsync('SELECT * FROM favorite')
-       const result = firstRow.filter((item)=> item.idRadio == props.radio.id)
-       if(result.length > 0){
-        setFavorite(true)
-       }
+      //  try {
+      //  const firstRow = await db.getAllAsync('SELECT * FROM favorite')
+      //  const result = firstRow.filter((item)=> item.idRadio == props.radio.id)
+      //  if(result.length > 0){
+      //   setFavorite(true)
+      //  }
           
-       } catch (error) {
-           console.log(error)
-       }
+      //  } catch (error) {
+      //      console.log(error)
+      //  }
      }
      const saveFavorite = async()=>{
-      await db.runAsync(`INSERT INTO favorite (idRadio) VALUES (?)`, props.radio.id)        
-      setFavorite(true)
+      // await db.runAsync(`INSERT INTO favorite (idRadio) VALUES (?)`, props.radio.id)        
+      // setFavorite(true)
     }
     const deleteFavorite = async()=>{
-      try {
-        await db.runAsync('DELETE FROM favorite WHERE idRadio = $value', props.radio.id)
-        setFavorite(false)   
-      } catch (error) {
-          console.log(error)
-      }          
+      // try {
+      //   await db.runAsync('DELETE FROM favorite WHERE idRadio = $value', props.radio.id)
+      //   setFavorite(false)   
+      // } catch (error) {
+      //     console.log(error)
+      // }          
   }
    useEffect(() => {
      getAllfavorites();

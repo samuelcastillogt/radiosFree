@@ -3,9 +3,11 @@ import { View, StyleSheet, Image, Text, ActivityIndicator } from 'react-native';
 import { Audio } from 'expo-av';
 import { AntDesign, FontAwesome } from '@expo/vector-icons';
 import { contants } from '../constans';
+//////New Player
+// import { useAudioPlayer } from 'expo-audio';
 export default function Player(props) {
   const {radio, setRadio} = props
-  const {url, nombre, imagen} = radio.data
+  const {url, nombre, imagen, categoria} = radio.data
   const [sound, setSound] = useState();
   const [loading, setLoading] = useState(false)
   async function playSound() {
@@ -48,12 +50,13 @@ export default function Player(props) {
       />
       <View style={styles.secondContainer}>
        <Text style={styles.title}>{nombre}</Text>
+       <Text style={styles.categorieTag}>{categoria}</Text>
       <View style={styles.control}>
          {
         sound == undefined && loading == false && <AntDesign name="play" size={100} color={"white"} onPress={playSound}/>
       }
        {
-        loading == true && <ActivityIndicator size="large"/>
+        loading == true && <ActivityIndicator size={100}/>
        } 
        {
         sound != undefined && loading == false && <FontAwesome name="stop" size={100} color="white" onPress={stopSound}/>
@@ -88,7 +91,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
     justifyContent: "center",
     textAlign: "center",
-    margin: 20
+    margin: 20,
   },
   img:{
     width: "120%",
@@ -108,7 +111,12 @@ const styles = StyleSheet.create({
   secondContainer:{
     flex: 1,
     justifyContent: "center",
+    alignItems: "center"
 
+  },
+  categorieTag:{
+    color: "white",
+    textShadowColor: "black"
   }
 
 })

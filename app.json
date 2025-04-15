@@ -6,6 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/icono.jpg",
     "userInterfaceStyle": "light",
+    "newArchEnabled": true,
     "splash": {
       "image": "./assets/icono.jpg",
       "resizeMode": "contain",
@@ -35,7 +36,9 @@
       }
     },
     "plugins": [
-      "expo-build-properties"
+      "expo-build-properties",
+      "expo-sqlite",
+      "expo-audio"
     ]
   },
   "react-native-google-mobile-ads": {

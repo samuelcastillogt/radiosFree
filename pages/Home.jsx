@@ -6,7 +6,7 @@ import { TextInput } from 'react-native-paper';
 import { contants } from '../constans'
 import { dataService } from '../services/data.service'
 import { SET_RADIOS } from '../redux/slices/radios.slice'
-import {useSQLiteContext} from "expo-sqlite/next"
+// import {useSQLiteContext} from "expo-sqlite/next"
 // import Admob from '../admob/Interestal'
 // import Banner from '../admob/Baner'
 const categorias = ["Todas",
@@ -16,7 +16,7 @@ const categorias = ["Todas",
 const Home = ({navigation}) => {
     const radios = useSelector(state => state.radios.radios)
     const dispatch = useDispatch()
-    const db = useSQLiteContext();
+    // const db = useSQLiteContext();
     const getData = async()=>{
         const response = await dataService.getAllData()
         if(response.data){
@@ -31,18 +31,18 @@ const Home = ({navigation}) => {
       },[])
 
       async function setup() {
-            try {
-                await db.execAsync(`
-                PRAGMA journal_mode = WAL;
-                CREATE TABLE IF NOT EXISTS favorite (id INTEGER PRIMARY KEY NOT NULL, idRadio TEXT);
-            `);  
+            // try {
+            //     await db.execAsync(`
+            //     PRAGMA journal_mode = WAL;
+            //     CREATE TABLE IF NOT EXISTS favorite (id INTEGER PRIMARY KEY NOT NULL, idRadio TEXT);
+            // `);  
         //     await db.execAsync(`
         //     PRAGMA journal_mode = WAL;
         //     DROP TABLE db;
         // `); 
-            } catch (error) {
-                console.log("error"+error)
-            }
+            // } catch (error) {
+            //     console.log("error"+error)
+            // }
           }
       useEffect(()=>{
         setup()

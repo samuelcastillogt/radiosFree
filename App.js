@@ -5,7 +5,7 @@ import { contants } from './constans';
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { PaperProvider } from 'react-native-paper';
-import { SQLiteProvider, useSQLiteContext } from 'expo-sqlite/next';
+// import { SQLiteProvider, useSQLiteContext } from 'expo-sqlite/next';
 
 import Home from './pages/Home';
 import Radios from './pages/Radios';
@@ -14,17 +14,18 @@ import { Provider } from 'react-redux'
 import Radio from './pages/Radio';
 import { useEffect } from 'react';
 import Fav from './pages/Fav';
+import NewHome from './pages/NewHome';
 // import { setup } from './services/favorites.service';
 
 const Stack = createNativeStackNavigator()
 export default function App() {
   return (
     <Provider store={store}>
-      <SQLiteProvider databaseName="db.db" >
+      {/* <SQLiteProvider databaseName="db.db" > */}
       <PaperProvider>
     <NavigationContainer>
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={Home} options={{headerShown: false}}/>
+      <Stack.Screen name="Home" component={NewHome} options={{headerShown: false}}/>
       <Stack.Screen name="Radios" component={Radios} options={({ route }) => ({ title: route.params.filtro ? route.params.filtro.toUpperCase(): "TODAS" , headerStyle: {
             backgroundColor: '#3c5384',
           },          headerTintColor: '#fff',
@@ -46,7 +47,7 @@ export default function App() {
     </Stack.Navigator>
     </NavigationContainer>
     </PaperProvider>
-    </SQLiteProvider>
+    {/* </SQLiteProvider> */}
     </Provider>
   );
 }
