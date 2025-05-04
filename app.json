@@ -24,7 +24,7 @@
         "backgroundColor": "#051e34"
       },
       "package": "com.samuelcastillo.radiosFree",
-      "versionCode": 14
+      "versionCode": 17
     },
     "web": {
       "favicon": "./assets/favicon.png"
